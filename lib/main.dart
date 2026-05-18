@@ -19,6 +19,11 @@ import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'l10n/app_localizations.dart';
 
+/// Global navigator key for app-wide navigation
+class AppNavigatorKey {
+  static final GlobalKey<NavigatorState> key = GlobalKey<NavigatorState>();
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -99,7 +104,7 @@ class _SanalMahkemeAppState extends State<SanalMahkemeApp> {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: themeMode,
-          navigatorKey: NavigatorKey.key,
+          navigatorKey: AppNavigatorKey.key,
           home: hasCompletedOnboarding ? const HomeScreen() : const OnboardingScreen(),
           
           // Localization

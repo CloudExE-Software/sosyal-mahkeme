@@ -104,4 +104,12 @@ class EncryptionService {
 
   /// Şifreleme aktif mi?
   bool get isEncryptionEnabled => _encryptionKey != null && _encryptionIv != null;
+
+  /// Tüm şifreli verileri temizle
+  Future<void> clearSecureStorage() async {
+    await _secureStorage.deleteAll();
+    _encryptionKey = null;
+    _encryptionIv = null;
+    LoggerService.info('Secure storage temizlendi', tag: 'EncryptionService');
+  }
 }

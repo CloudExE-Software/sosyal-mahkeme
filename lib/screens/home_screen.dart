@@ -98,7 +98,6 @@ class _HomeScreenState extends State<HomeScreen> {
           textInputAction: TextInputAction.newline,
           autocorrect: true,
           enableSuggestions: true,
-          autofillHints: const [AutofillHint.newline],
           decoration: const InputDecoration(
             hintText: 'Tartışmayı buraya yazın...\n\nÖrnek:\nBen: Dün bulaşıkları sen yıkayacaktın\nO: Hayır senin sırandı...',
             border: OutlineInputBorder(),
@@ -172,7 +171,6 @@ class _HomeScreenState extends State<HomeScreen> {
               textInputAction: TextInputAction.newline,
               autocorrect: true,
               enableSuggestions: true,
-              autofillHints: const [AutofillHint.newline],
               decoration: const InputDecoration(
                 hintText: 'Davayı buraya yazın...\n\nÖrnek:\nBen: Bulaşıkları sen yıkayacaktın\nO: Hayır senin sırandı...',
                 border: OutlineInputBorder(),
