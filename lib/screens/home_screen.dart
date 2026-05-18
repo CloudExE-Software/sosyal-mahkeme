@@ -33,17 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _logScreenView();
     _gamification.initialize();
-    if (Constants.showAds) {
-      _adService.loadBannerAd();
-    }
-  }
-
-  @override
-  void dispose() {
-    if (Constants.showAds) {
-      _adService.disposeBannerAd();
-    }
-    super.dispose();
   }
 
   Future<void> _logScreenView() async {
@@ -106,6 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
           maxLines: 10,
           autofocus: true,
           keyboardType: TextInputType.multiline,
+          textInputAction: TextInputAction.newline,
+          autocorrect: true,
+          enableSuggestions: true,
+          autofillHints: const [AutofillHint.newline],
           decoration: const InputDecoration(
             hintText: 'Tartışmayı buraya yazın...\n\nÖrnek:\nBen: Dün bulaşıkları sen yıkayacaktın\nO: Hayır senin sırandı...',
             border: OutlineInputBorder(),
@@ -379,14 +372,6 @@ _buildOptionCard(
           ),
       ],
     ),
-    
-    // Banner Reklam
-    bottomNavigationBar: Constants.showAds && _adService.bannerAd != null
-        ? SizedBox(
-            height: 60,
-            child: AdWidget(ad: _adService.bannerAd!),
-          )
-        : null,
   );
 }
 

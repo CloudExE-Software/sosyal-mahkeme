@@ -183,7 +183,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
           // Premium & Abonelik
           _buildSectionHeader('Premium'),
-          _buildPremiumStatus(),
+          _buildSubscriptionSection(),
           
           const Divider(height: 32),
 
@@ -426,7 +426,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _buildPremiumStatus() {
   Widget _buildSubscriptionSection() {
     // Freemium model - tüm özellikler ücretsiz, premium kaldırıldı
     return Container(
@@ -482,7 +481,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ],
       ),
     );
-  }
   }
 
   Widget _buildInfoTile({

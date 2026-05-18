@@ -10,6 +10,7 @@ import 'user_preferences_service.dart';
 import 'cache_service.dart';
 import 'rate_limiter.dart';
 import 'analytics_service.dart';
+import 'logger_service.dart';
 
 /// AI Servisi — Gemini 2.0 Flash API ile konuşma analizi
 /// (OpenAI'den Gemini'ye geçildi — tamamen ücretsiz)
@@ -69,7 +70,10 @@ class AIService {
 
       // System instruction + user prompt
       final fullPrompt = '${juriType.systemPrompt}\n\n$genderContext\n\n'
-          'Şu tartışmayı/konuşmayı analiz et. SADECE JSON formatında yanıt ver:\n\n$metin';
+          'Şu tartışmayı/konuşmayı analiz et:\n\n$metin\n\n'
+          'Yanıtını SADECE geçerli bir JSON nesnesi olarak ver. '
+          'Markdown, açıklama veya başka metin EKLEME. '
+          'JSON içindeki tüm tırnak işaretlerini \\" ile kaçır.';
 
       final response = await http.post(
         Uri.parse(url),
@@ -95,8 +99,29 @@ class AIService {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(utf8.decode(response.bodyBytes));
-        final content = data['candidates'][0]['content']['parts'][0]['text'];
-        final kararData = jsonDecode(content);
+        String content = data['candidates'][0]['content']['parts'][0]['text'];
+        
+        // Markdown bloğu varsa çıkar
+        final codeBlockMatch = RegExp(r'```(?:json)?\s*\n?([\s\S]*?)\n?\s*```').firstMatch(content);
+        if (codeBlockMatch != null) {
+          content = codeBlockMatch.group(1)!.trim();
+        }
+        
+        // İlk { ve son } arasını al
+        final startIdx = content.indexOf('{');
+        final endIdx = content.lastIndexOf('}');
+        if (startIdx != -1 && endIdx != -1 && endIdx > startIdx) {
+          content = content.substring(startIdx, endIdx + 1);
+        }
+        
+        late Map<String, dynamic> kararData;
+        try {
+          kararData = jsonDecode(content);
+        } catch (e) {
+          LoggerService.error('JSON parse error: $e\nRaw: $content');
+          // Demo fallback
+          return _generateDemoDecision(juriTipiId, metin);
+        }
 
         final karar = Karar(
           hakliKisi: kararData['hakli_kisi'] ?? 'Belirsiz',
@@ -131,9 +156,10 @@ class AIService {
       await AnalyticsService().logNetworkError('timeout');
       rethrow;
     } on FormatException catch (e, stackTrace) {
+      // JSON parse hatası - demo fallback
+      LoggerService.warning('Format error, using demo fallback: $e');
       await AnalyticsService().logError(e, stackTrace);
-      ErrorHandler.logError(e, stackTrace);
-      rethrow;
+      return _generateDemoDecision(juriTipiId, metin);
     } catch (e, stackTrace) {
       await AnalyticsService().logError(e, stackTrace);
       ErrorHandler.logError(e, stackTrace);

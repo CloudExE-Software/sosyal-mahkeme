@@ -85,12 +85,6 @@ class _AnalysisScreenState extends State<AnalysisScreen>
 
   Future<void> _startAnalysis() async {
     try {
-      // Önce reklam göster (Interstitial - sorgu öncesi)
-      if (Constants.showAds) {
-        await _adService.showInterstitialAd();
-        if (!mounted) return;
-      }
-      
       // Minimum bekleme süresi (UX için)
       await Future.delayed(const Duration(seconds: 3));
       
@@ -110,7 +104,7 @@ class _AnalysisScreenState extends State<AnalysisScreen>
         _isAnalyzing = false;
       });
       
-      // Reklam göster (Interstitial - sorgu sonrası)
+      // Reklam göster (Interstitial - sonuç öncesi tek sefer)
       if (Constants.showAds) {
         await _adService.showInterstitialAd(
           onAdClosed: () {
