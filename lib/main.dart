@@ -4,7 +4,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'utils/theme.dart';
 import 'utils/constants.dart';
-import 'utils/lottie_animations.dart';
 import 'services/ad_service.dart';
 import 'services/user_preferences_service.dart';
 import 'services/history_service.dart';
