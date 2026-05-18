@@ -109,7 +109,7 @@ class SubscriptionService {
     PremiumFeature(
       icon: '⚖️',
       title: 'Tüm Jüriler',
-      description: '5 farklı jüri tipi ile analiz',
+      description: '11 farklı jüri tipi ile analiz',
       isFree: true,
     ),
     PremiumFeature(
@@ -121,7 +121,7 @@ class SubscriptionService {
     PremiumFeature(
       icon: '🎯',
       title: 'Karşılaştırma',
-      description: '5 jüriye kadar karşılaştırma',
+      description: '11 jüriye kadar karşılaştırma',
       isFree: true,
     ),
     PremiumFeature(

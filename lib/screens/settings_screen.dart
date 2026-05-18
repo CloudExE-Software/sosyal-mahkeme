@@ -9,7 +9,6 @@ import '../services/cache_service.dart';
 import '../services/rate_limiter.dart';
 import '../services/theme_service.dart';
 import 'data_security_screen.dart';
-import 'premium_screen.dart';
 import 'accessibility_settings_screen.dart';
 import 'language_switcher_screen.dart';
 
@@ -428,124 +427,62 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildPremiumStatus() {
-    // Freemium model - tüm özellikler ücretsiz
-    // Not: SubscriptionService her zaman false döndürür,
-    // ileride Google Play Billing entegrasyonu ile değiştirilecek
-    final isPremium = SubscriptionService().isPremium; 
-    
-    return Column(
-      children: [
-        // Premium durumu kartı
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            gradient: isPremium
-                ? LinearGradient(
-                    colors: [
-                      AppTheme.goldColor,
-                      AppTheme.goldColor.withValues(alpha: 0.7),
-                    ],
-                  )
-                : LinearGradient(
-                    colors: [
-                      Colors.grey.shade700,
-                      Colors.grey.shade600,
-                    ],
-                  ),
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: (isPremium ? AppTheme.goldColor : Colors.grey)
-                    .withValues(alpha: 0.3),
-                blurRadius: 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Icon(
-                isPremium ? Icons.stars : Icons.lock,
-                size: 40,
-                color: Colors.white,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isPremium ? 'Premium Aktif' : 'Free Plan',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      isPremium
-                          ? 'Tüm Özellikler Açık'
-                          : 'Tüm özelliklerin kilidini aç',
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.9),
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              if (!isPremium)
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: Colors.white,
-                ),
-            ],
-          ),
+  Widget _buildSubscriptionSection() {
+    // Freemium model - tüm özellikler ücretsiz, premium kaldırıldı
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            AppTheme.successColor,
+            AppTheme.successColor.withValues(alpha: 0.7),
+          ],
         ),
-        
-        // Premium yönetim butonu
-        ListTile(
-          leading: Icon(
-            isPremium ? Icons.manage_accounts : Icons.upgrade,
-            color: AppTheme.goldColor,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: AppTheme.successColor.withValues(alpha: 0.3),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
           ),
-          title: Text(
-            isPremium ? 'Aboneliği Yönet' : 'Premium\'a Geç',
-            style: const TextStyle(
-              color: AppTheme.goldColor,
-              fontWeight: FontWeight.w600,
+        ],
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.celebration,
+            size: 40,
+            color: Colors.white,
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Tüm Özellikler Ücretsiz',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '11 jüri tipi, sınırsız analiz — hepsi ücretsiz!',
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.9),
+                    fontSize: 13,
+                  ),
+                ),
+              ],
             ),
           ),
-          subtitle: Text(
-            isPremium
-                ? 'Abonelik ayarlarını görüntüle'
-                : 'Tüm premium jüriler ve özellikler',
-            style: const TextStyle(fontSize: 12),
-          ),
-          trailing: const Icon(
-            Icons.arrow_forward_ios,
-            size: 16,
-            color: AppTheme.goldColor,
-          ),
-          onTap: () async {
-            final result = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const PremiumScreen(),
-              ),
-            );
-            
-            // Premium değişti mi kontrol et
-            if (result == true && mounted) {
-              setState(() {});
-            }
-          },
-        ),
-      ],
+        ],
+      ),
     );
+  }
   }
 
   Widget _buildInfoTile({
