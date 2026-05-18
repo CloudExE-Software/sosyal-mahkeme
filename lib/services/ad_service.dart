@@ -93,16 +93,51 @@ class AdService {
   /// Geçiş reklamını göster
   Future<void> showInterstitialAd({Function? onAdClosed}) async {
     if (_isInterstitialAdReady && _interstitialAd != null) {
-      await _interstitialAd?.show();
-      _interstitialAd = null;
-      _isInterstitialAdReady = false;
+      // Callback'i bir değişkende tut
+      final callback = onAdClosed;
       
-      // Reklam kapandıktan sonra callback çağır
-      await Future.delayed(const Duration(seconds: 1));
-      onAdClosed?.call();
+      // Full screen callback'i güncelle
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          LoggerService.info('Geçiş reklamı kapatıldı', tag: 'AdService');
+          ad.dispose();
+          _interstitialAd = null;
+          _isInterstitialAdReady = false;
+          _loadInterstitialAd(); // Yeni reklam yükle
+          
+          // Callback'i çağır
+          try {
+            callback?.call();
+          } catch (e) {
+            LoggerService.error('Ad callback error', tag: 'AdService', error: e);
+          }
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          LoggerService.error('Geçiş reklamı gösterilemedi', tag: 'AdService', error: error);
+          ad.dispose();
+          _interstitialAd = null;
+          _isInterstitialAdReady = false;
+          _loadInterstitialAd();
+          
+          // Hata durumunda da callback'i çağır
+          try {
+            callback?.call();
+          } catch (e) {
+            LoggerService.error('Ad callback error', tag: 'AdService', error: e);
+          }
+        },
+      );
+      
+      await _interstitialAd!.show();
+      _interstitialAd = null;
     } else {
       LoggerService.warning('Geçiş reklamı henüz hazır değil', tag: 'AdService');
-      onAdClosed?.call(); // Reklam yoksa direkt devam et
+      // Reklam yoksa direkt devam et
+      try {
+        onAdClosed?.call();
+      } catch (e) {
+        LoggerService.error('Ad callback error', tag: 'AdService', error: e);
+      }
     }
   }
 

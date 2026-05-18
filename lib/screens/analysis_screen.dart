@@ -106,14 +106,12 @@ class _AnalysisScreenState extends State<AnalysisScreen>
       
       // Reklam göster (Interstitial - sonuç öncesi tek sefer)
       if (Constants.showAds) {
-        await _adService.showInterstitialAd(
-          onAdClosed: () {
-            if (mounted) {
-              _navigateToResult(karar);
-            }
-          },
-        );
-      } else {
+        // Reklamı bekle ve sonucu göster
+        await _adService.showInterstitialAd();
+      }
+      
+      // Her durumda sonuca git
+      if (mounted) {
         _navigateToResult(karar);
       }
       
