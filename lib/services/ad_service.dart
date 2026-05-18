@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../utils/constants.dart';
 import 'logger_service.dart';
@@ -17,11 +18,24 @@ class AdService {
   bool _isBannerAdReady = false;
   bool _isInterstitialAdReady = false;
   bool _isRewardedAdReady = false;
+  bool _isInitialized = false;
 
   /// AdMob'u başlat
   Future<void> initialize() async {
-    await MobileAds.instance.initialize();
-    _loadInterstitialAd(); // Karar ekranı öncesi için hazır tut
+    // Reklamlar kapalıysa başlatma
+    if (!Constants.showAds) {
+      LoggerService.info('Reklamlar kapalı, AdMob başlatılmadı', tag: 'AdService');
+      return;
+    }
+    
+    try {
+      await MobileAds.instance.initialize();
+      _isInitialized = true;
+      _loadInterstitialAd();
+      LoggerService.info('AdMob başarıyla başlatıldı', tag: 'AdService');
+    } catch (e) {
+      LoggerService.error('AdMob başlatılamadı', tag: 'AdService', error: e);
+    }
   }
 
   // ==================== BANNER REKLAM ====================
@@ -58,14 +72,17 @@ class AdService {
 
   // ==================== INTERSTITIAL REKLAM ====================
 
-  /// Geçiş reklamı yükle (Karar ekranı öncesi)
+  /// Geçiş reklamı yükle
   void _loadInterstitialAd() {
+    // Emülatörde test ID kullan
+    final adUnitId = _getInterstitialAdUnitId();
+    
     InterstitialAd.load(
-      adUnitId: _getInterstitialAdUnitId(),
+      adUnitId: adUnitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-          LoggerService.info('Geçiş reklamı yüklendi', tag: 'AdService');
+          LoggerService.info('Geçiş reklamı yüklendi: $adUnitId', tag: 'AdService');
           _interstitialAd = ad;
           _isInterstitialAdReady = true;
 
@@ -73,17 +90,20 @@ class AdService {
             onAdDismissedFullScreenContent: (ad) {
               LoggerService.info('Geçiş reklamı kapatıldı', tag: 'AdService');
               ad.dispose();
-              _loadInterstitialAd(); // Yeni reklam yükle
+              _interstitialAd = null;
+              _isInterstitialAdReady = false;
+              _loadInterstitialAd();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               LoggerService.error('Geçiş reklamı gösterilemedi', tag: 'AdService', error: error);
               ad.dispose();
-              _loadInterstitialAd();
+              _interstitialAd = null;
+              _isInterstitialAdReady = false;
             },
           );
         },
         onAdFailedToLoad: (error) {
-          LoggerService.error('Geçiş reklamı yüklenemedi', tag: 'AdService', error: error);
+          LoggerService.error('Geçiş reklamı yüklenemedi: $error', tag: 'AdService');
           _isInterstitialAdReady = false;
         },
       ),
@@ -92,52 +112,42 @@ class AdService {
 
   /// Geçiş reklamını göster
   Future<void> showInterstitialAd({Function? onAdClosed}) async {
-    if (_isInterstitialAdReady && _interstitialAd != null) {
-      // Callback'i bir değişkende tut
-      final callback = onAdClosed;
-      
-      // Full screen callback'i güncelle
-      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
-        onAdDismissedFullScreenContent: (ad) {
-          LoggerService.info('Geçiş reklamı kapatıldı', tag: 'AdService');
-          ad.dispose();
-          _interstitialAd = null;
-          _isInterstitialAdReady = false;
-          _loadInterstitialAd(); // Yeni reklam yükle
-          
-          // Callback'i çağır
-          try {
-            callback?.call();
-          } catch (e) {
-            LoggerService.error('Ad callback error', tag: 'AdService', error: e);
-          }
-        },
-        onAdFailedToShowFullScreenContent: (ad, error) {
-          LoggerService.error('Geçiş reklamı gösterilemedi', tag: 'AdService', error: error);
-          ad.dispose();
-          _interstitialAd = null;
-          _isInterstitialAdReady = false;
-          _loadInterstitialAd();
-          
-          // Hata durumunda da callback'i çağır
-          try {
-            callback?.call();
-          } catch (e) {
-            LoggerService.error('Ad callback error', tag: 'AdService', error: e);
-          }
-        },
-      );
-      
-      await _interstitialAd!.show();
-      _interstitialAd = null;
-    } else {
-      LoggerService.warning('Geçiş reklamı henüz hazır değil', tag: 'AdService');
-      // Reklam yoksa direkt devam et
+    // Debug modda reklamları tamamen atla (emülatör çökmesini önler)
+    if (!Constants.showAds || !_isInitialized) {
+      LoggerService.info('Reklam atlandı (kapalı veya başlatılmadı)', tag: 'AdService');
       try {
         onAdClosed?.call();
       } catch (e) {
         LoggerService.error('Ad callback error', tag: 'AdService', error: e);
       }
+      return;
+    }
+    
+    // Reklam hazır değilse direkt devam et
+    if (!_isInterstitialAdReady || _interstitialAd == null) {
+      LoggerService.warning('Reklam hazır değil, atlanıyor', tag: 'AdService');
+      try {
+        onAdClosed?.call();
+      } catch (e) {
+        LoggerService.error('Ad callback error', tag: 'AdService', error: e);
+      }
+      return;
+    }
+    
+    // Reklamı göster
+    try {
+      await _interstitialAd!.show();
+      _interstitialAd = null;
+      _isInterstitialAdReady = false;
+    } catch (e) {
+      LoggerService.error('Reklam gösterilemedi: $e', tag: 'AdService');
+    }
+    
+    // Callback'i her durumda çağır
+    try {
+      onAdClosed?.call();
+    } catch (e) {
+      LoggerService.error('Ad callback error', tag: 'AdService', error: e);
     }
   }
 

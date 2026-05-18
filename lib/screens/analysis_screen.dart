@@ -104,13 +104,10 @@ class _AnalysisScreenState extends State<AnalysisScreen>
         _isAnalyzing = false;
       });
       
-      // Reklam göster (Interstitial - sonuç öncesi tek sefer)
-      if (Constants.showAds) {
-        // Reklamı bekle ve sonucu göster
-        await _adService.showInterstitialAd();
-      }
+      // Reklam göster (Interstitial - her durumda callback çalışır)
+      await _adService.showInterstitialAd();
       
-      // Her durumda sonuca git
+      // Sonuca git
       if (mounted) {
         _navigateToResult(karar);
       }

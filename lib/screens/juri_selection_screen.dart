@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/juri_type.dart';
 import '../utils/theme.dart';
-import '../utils/constants.dart';
 import '../utils/page_transitions.dart';
 import 'analysis_screen.dart';
-import '../services/ad_service.dart';
 
 /// Jüri Seçim Ekranı
 class JuriSelectionScreen extends StatefulWidget {
@@ -21,15 +19,6 @@ class JuriSelectionScreen extends StatefulWidget {
 
 class _JuriSelectionScreenState extends State<JuriSelectionScreen> {
   String? selectedJuriId;
-  final AdService _adService = AdService();
-
-  @override
-  void initState() {
-    super.initState();
-    if (Constants.showAds) {
-      _adService.loadRewardedAd();
-    }
-  }
 
   /// Jüri seçimi ve analize gönder
   void _selectJuryAndProceed(JuriType jury) {

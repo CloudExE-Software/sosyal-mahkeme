@@ -69,6 +69,7 @@ class Constants {
     return ApiKeys.openAIApiKey == 'BURAYA_OPENAI_API_KEY_EKLE' || ApiKeys.openAIApiKey.isEmpty;
   }
   
-  /// Reklam göster (AKTİF - Interstitial her analiz öncesi ve sonrası)
-  static const bool showAds = true;
+  /// Reklam göster (Emülatörde FALSE - Release'de TRUE)
+  /// Test için: FALSE, Production için: TRUE
+  static const bool showAds = false; // Emülatör testi için kapalı
 }
