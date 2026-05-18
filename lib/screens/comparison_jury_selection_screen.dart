@@ -84,18 +84,20 @@ class _ComparisonJurySelectionScreenState
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.blue.shade50,
-                  Colors.purple.shade50,
+                  AppTheme.infoColor.withValues(alpha: 0.15),
+                  AppTheme.accentColor.withValues(alpha: 0.15),
                 ],
               ),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.blue.shade200),
+              border: Border.all(
+                color: AppTheme.infoColor.withValues(alpha: 0.3),
+              ),
             ),
             child: Column(
               children: [
                 Row(
                   children: [
-                    Icon(Icons.compare_arrows, color: Colors.blue[700]),
+                    Icon(Icons.compare_arrows, color: AppTheme.accentColor),
                     const SizedBox(width: 8),
                     const Expanded(
                       child: Text(
@@ -103,6 +105,7 @@ class _ComparisonJurySelectionScreenState
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: AppTheme.textPrimary,
                         ),
                       ),
                     ),
@@ -113,7 +116,7 @@ class _ComparisonJurySelectionScreenState
                   'Aynı davayı farklı jürilerin bakış açısından değerlendirin. 2-5 arası jüri seçebilirsiniz.',
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.grey[700],
+                    color: AppTheme.textSecondary,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -131,7 +134,7 @@ class _ComparisonJurySelectionScreenState
                     _buildCounterChip(
                       '${JuriType.allJuries.length - _selectedJuryIds.length}',
                       'Kaldı',
-                      Colors.blue,
+                      AppTheme.infoColor,
                     ),
                   ],
                 ),
@@ -159,10 +162,10 @@ class _ComparisonJurySelectionScreenState
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppTheme.primaryColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
+                    color: Colors.black.withValues(alpha: 0.3),
                     blurRadius: 8,
                     offset: const Offset(0, -2),
                   ),
@@ -171,13 +174,13 @@ class _ComparisonJurySelectionScreenState
               child: ElevatedButton(
                 onPressed: _selectedJuryIds.length >= 2 ? _startComparison : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: AppTheme.accentColor,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  disabledBackgroundColor: Colors.grey[300],
+                  disabledBackgroundColor: AppTheme.textTertiary.withValues(alpha: 0.3),
                 ),
                 child: Text(
                   _selectedJuryIds.isEmpty
@@ -303,7 +306,7 @@ class _ComparisonJurySelectionScreenState
                       jury.description,
                       style: TextStyle(
                         fontSize: 13,
-                        color: Colors.grey[600],
+                        color: AppTheme.textSecondary,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

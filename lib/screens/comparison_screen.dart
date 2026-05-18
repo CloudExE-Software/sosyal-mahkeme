@@ -377,7 +377,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color: isDark ? Colors.blue.shade900.withValues(alpha: 0.2) : Colors.blue.shade50,
+      color: isDark ? AppTheme.secondaryColor : AppTheme.infoColor.withValues(alpha: 0.1),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -385,13 +385,14 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
           children: [
             Row(
               children: [
-                Icon(Icons.analytics, color: isDark ? Colors.blue.shade300 : Colors.blue[700]),
+                Icon(Icons.analytics, color: AppTheme.infoColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Karşılaştırma Özeti',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: AppTheme.textPrimary,
                   ),
                 ),
               ],

@@ -205,21 +205,21 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: _isListening
-                            ? [Colors.red.shade50, Colors.red.shade100]
-                            : [Colors.blue.shade50, Colors.blue.shade100],
+                            ? [AppTheme.accentColor.withValues(alpha: 0.15), AppTheme.accentColor.withValues(alpha: 0.25)]
+                            : [AppTheme.infoColor.withValues(alpha: 0.15), AppTheme.infoColor.withValues(alpha: 0.25)],
                       ),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: _isListening
-                            ? Colors.red.shade300
-                            : Colors.blue.shade300,
+                            ? AppTheme.accentColor.withValues(alpha: 0.4)
+                            : AppTheme.infoColor.withValues(alpha: 0.4),
                       ),
                     ),
                     child: Row(
                       children: [
                         Icon(
                           _isListening ? Icons.mic : Icons.mic_none,
-                          color: _isListening ? Colors.red : Colors.blue,
+                          color: _isListening ? AppTheme.accentColor : AppTheme.infoColor,
                           size: 32,
                         ),
                         const SizedBox(width: 12),
@@ -232,13 +232,14 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
+                                  color: AppTheme.textPrimary,
                                 ),
                               ),
                               Text(
                                 _statusMessage,
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.grey[700],
+                                  color: AppTheme.textSecondary,
                                 ),
                               ),
                             ],
@@ -263,21 +264,21 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                               height: 150,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                gradient: RadialGradient(
-                                  colors: _isListening
-                                      ? [Colors.red.shade400, Colors.red.shade700]
-                                      : [AppTheme.primaryColor, AppTheme.accentColor],
+                              gradient: RadialGradient(
+                                colors: _isListening
+                                    ? [AppTheme.accentColor, AppTheme.errorColor]
+                                    : [AppTheme.primaryColor, AppTheme.accentColor],
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: (_isListening
+                                          ? AppTheme.accentColor
+                                          : AppTheme.primaryColor)
+                                      .withValues(alpha: 0.5),
+                                  blurRadius: 20,
+                                  spreadRadius: 5,
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: (_isListening
-                                            ? Colors.red
-                                            : AppTheme.primaryColor)
-                                        .withValues(alpha: 0.5),
-                                    blurRadius: 20,
-                                    spreadRadius: 5,
-                                  ),
-                                ],
+                              ],
                               ),
                               child: Icon(
                                 _isListening ? Icons.stop : Icons.mic,
@@ -300,7 +301,7 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                           : 'Kaydetmeye başla',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.grey[600],
+                        color: AppTheme.textSecondary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -313,22 +314,29 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.grey[100],
+                        color: AppTheme.secondaryColor,
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.grey[300]!),
+                        border: Border.all(
+                          color: AppTheme.textTertiary.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              const Icon(Icons.text_snippet, size: 20),
+                              const Icon(
+                                Icons.text_snippet,
+                                size: 20,
+                                color: AppTheme.textPrimary,
+                              ),
                               const SizedBox(width: 8),
                               const Text(
                                 'Kaydedilen Metin',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  color: AppTheme.textPrimary,
                                 ),
                               ),
                               const Spacer(),
@@ -340,10 +348,10 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                                   ),
                                   decoration: BoxDecoration(
                                     color: _confidence > 0.8
-                                        ? Colors.green.shade100
+                                        ? AppTheme.successColor.withValues(alpha: 0.2)
                                         : _confidence > 0.5
-                                            ? Colors.orange.shade100
-                                            : Colors.red.shade100,
+                                            ? AppTheme.warningColor.withValues(alpha: 0.2)
+                                            : AppTheme.errorColor.withValues(alpha: 0.2),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Text(
@@ -352,10 +360,10 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                       color: _confidence > 0.8
-                                          ? Colors.green.shade900
+                                          ? AppTheme.successColor
                                           : _confidence > 0.5
-                                              ? Colors.orange.shade900
-                                              : Colors.red.shade900,
+                                              ? AppTheme.warningColor
+                                              : AppTheme.errorColor,
                                     ),
                                   ),
                                 ),
@@ -374,7 +382,7 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                             '${_text.split(' ').length} kelime',
                             style: TextStyle(
                               fontSize: 12,
-                              color: Colors.grey[600],
+                              color: AppTheme.textTertiary,
                             ),
                           ),
                         ],
@@ -388,22 +396,25 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.amber.shade50,
+                        color: AppTheme.warningColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.amber.shade200),
+                        border: Border.all(
+                          color: AppTheme.warningColor.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.lightbulb, color: Colors.amber[700]),
+                              Icon(Icons.lightbulb, color: AppTheme.warningColor),
                               const SizedBox(width: 8),
                               const Text(
                                 'İpuçları',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
+                                  color: AppTheme.textPrimary,
                                 ),
                               ),
                             ],
@@ -428,10 +439,10 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppTheme.primaryColor,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
+                      color: Colors.black.withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, -2),
                     ),
@@ -440,7 +451,7 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
                 child: ElevatedButton(
                   onPressed: _continueWithText,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
+                    backgroundColor: AppTheme.accentColor,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
@@ -482,10 +493,10 @@ class _VoiceInputScreenState extends State<VoiceInputScreen>
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[700],
-              ),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: AppTheme.textSecondary,
+                ),
             ),
           ),
         ],

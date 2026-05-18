@@ -169,6 +169,10 @@ class _HomeScreenState extends State<HomeScreen> {
               maxLines: 8,
               autofocus: true,
               keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
+              autocorrect: true,
+              enableSuggestions: true,
+              autofillHints: const [AutofillHint.newline],
               decoration: const InputDecoration(
                 hintText: 'Davayı buraya yazın...\n\nÖrnek:\nBen: Bulaşıkları sen yıkayacaktın\nO: Hayır senin sırandı...',
                 border: OutlineInputBorder(),
@@ -350,23 +354,41 @@ _buildOptionCard(
         // Loading overlay
         if (_isLoading)
           Container(
-            color: Colors.black54,
-            child: const Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CircularProgressIndicator(
-                    color: AppTheme.accentColor,
+            color: Colors.black87,
+            child: Center(
+              child: Card(
+                color: AppTheme.primaryColor,
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const CircularProgressIndicator(
+                        color: AppTheme.accentColor,
+                        strokeWidth: 4,
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        'Görüntü taranıyor...',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: AppTheme.textPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Metin çıkarılıyor ve analiz için hazırlanıyor',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppTheme.textSecondary,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Deliller inceleniyor...',
-                    style: TextStyle(
-                      color: AppTheme.textPrimary,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
