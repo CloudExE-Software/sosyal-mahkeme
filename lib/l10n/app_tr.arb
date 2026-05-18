@@ -1,0 +1,118 @@
+{
+  "@@locale": "tr",
+  "appTitle": "Sanal Mahkeme",
+  "@appTitle": {
+    "description": "Uygulama başlığı"
+  },
+  "homeTitle": "Haklı Kim?",
+  "homeSubtitle": "Yapay zeka destekli sanal mahkeme sistemi",
+  "startButton": "Davaya Başla",
+  "continueButton": "Devam Et",
+  "cancelButton": "İptal",
+  "saveButton": "Kaydet",
+  "deleteButton": "Sil",
+  "okButton": "Tamam",
+  "yesButton": "Evet",
+  "noButton": "Hayır",
+  
+  "selectJury": "Jüri Seçimi",
+  "selectJuryDescription": "Davanızı değerlendirecek jüriyi seçin",
+  "enterCase": "Davanızı Anlatın",
+  "enterCaseHint": "Davanızı detaylı bir şekilde yazın...",
+  "analyzing": "Analiz ediliyor...",
+  "verdict": "Karar",
+  "explanation": "Açıklama",
+  
+  "history": "Geçmiş",
+  "favorites": "Favoriler",
+  "settings": "Ayarlar",
+  "premium": "Premium",
+  "analytics": "İstatistikler",
+  "notifications": "Bildirimler",
+  
+  "darkMode": "Karanlık Mod",
+  "language": "Dil",
+  "fontSize": "Yazı Boyutu",
+  "highContrast": "Yüksek Kontrast",
+  "screenReader": "Ekran Okuyucu",
+  
+  "turkish": "Türkçe",
+  "english": "İngilizce",
+  "arabic": "Arapça",
+  
+  "small": "Küçük",
+  "medium": "Orta",
+  "large": "Büyük",
+  "extraLarge": "Çok Büyük",
+  
+  "premiumTitle": "Premium Üyelik",
+  "premiumDescription": "Sınırsız dava ve özel jüriler",
+  "monthlyPlan": "Aylık",
+  "yearlyPlan": "Yıllık",
+  "lifetimePlan": "Ömür Boyu",
+  
+  "notificationSettings": "Bildirim Ayarları",
+  "caseUpdates": "Dava Güncellemeleri",
+  "juryRecommendations": "Jüri Önerileri",
+  "weeklyDigest": "Haftalık Özet",
+  "promotions": "Kampanyalar",
+  "dailyReminder": "Günlük Hatırlatma",
+  
+  "accessibility": "Erişilebilirlik",
+  "accessibilitySettings": "Erişilebilirlik Ayarları",
+  "voiceGuidance": "Sesli Rehber",
+  "enableVoiceGuidance": "Sesli rehberi etkinleştir",
+  
+  "about": "Hakkında",
+  "version": "Sürüm",
+  "rateApp": "Uygulamayı Oyla",
+  "shareApp": "Uygulamayı Paylaş",
+  "contactUs": "İletişim",
+  
+  "error": "Hata",
+  "success": "Başarılı",
+  "warning": "Uyarı",
+  "info": "Bilgi",
+  
+  "loading": "Yükleniyor...",
+  "retry": "Tekrar Dene",
+  "noData": "Veri bulunamadı",
+  "noInternet": "İnternet bağlantısı yok",
+  
+  "deleteConfirm": "Silmek istediğinize emin misiniz?",
+  "deleteSuccess": "Başarıyla silindi",
+  "saveSuccess": "Başarıyla kaydedildi",
+  
+  "premiumRequired": "Premium Üyelik Gerekli",
+  "premiumRequiredDescription": "Bu özellik premium üyelere özeldir",
+  "upgradeToPremium": "Premium'a Yükselt",
+  
+  "comparison": "Karşılaştırma",
+  "compareJuries": "Jürileri Karşılaştır",
+  "voiceInput": "Sesli Giriş",
+  "useVoice": "Sesli Kayıt Kullan",
+  
+  "cloudSync": "Bulut Senkronizasyonu",
+  "syncNow": "Şimdi Senkronize Et",
+  "lastSync": "Son Senkronizasyon",
+  "autoSync": "Otomatik Senkronizasyon",
+  
+  "security": "Güvenlik",
+  "dataEncryption": "Veri Şifreleme",
+  "biometricAuth": "Biyometrik Kimlik Doğrulama",
+  
+  "offlineMode": "Çevrimdışı Mod",
+  "offlineModeDescription": "İnternet olmadan çalışır",
+  
+  "onboarding1Title": "Hoş Geldiniz",
+  "onboarding1Description": "Yapay zeka destekli sanal mahkeme sistemine hoş geldiniz",
+  "onboarding2Title": "Jüri Seçin",
+  "onboarding2Description": "Farklı perspektiflerden davanızı değerlendirin",
+  "onboarding3Title": "Karar Alın",
+  "onboarding3Description": "Anında objektif değerlendirme ve öneriler",
+  "onboarding4Title": "Kaydedin ve Paylaşın",
+  "onboarding4Description": "Kararlarınızı saklayın ve paylaşın",
+  "skip": "Geç",
+  "next": "İleri",
+  "getStarted": "Başlayalım"
+}

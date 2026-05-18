@@ -1,0 +1,118 @@
+{
+  "@@locale": "ar",
+  "appTitle": "المحكمة الافتراضية",
+  "@appTitle": {
+    "description": "عنوان التطبيق"
+  },
+  "homeTitle": "من المحق؟",
+  "homeSubtitle": "نظام محكمة افتراضية مدعوم بالذكاء الاصطناعي",
+  "startButton": "بدء القضية",
+  "continueButton": "متابعة",
+  "cancelButton": "إلغاء",
+  "saveButton": "حفظ",
+  "deleteButton": "حذف",
+  "okButton": "موافق",
+  "yesButton": "نعم",
+  "noButton": "لا",
+  
+  "selectJury": "اختيار هيئة المحلفين",
+  "selectJuryDescription": "اختر هيئة محلفين لتقييم قضيتك",
+  "enterCase": "اوصف قضيتك",
+  "enterCaseHint": "اكتب قضيتك بالتفصيل...",
+  "analyzing": "جاري التحليل...",
+  "verdict": "الحكم",
+  "explanation": "التفسير",
+  
+  "history": "السجل",
+  "favorites": "المفضلة",
+  "settings": "الإعدادات",
+  "premium": "بريميوم",
+  "analytics": "الإحصائيات",
+  "notifications": "الإشعارات",
+  
+  "darkMode": "الوضع الداكن",
+  "language": "اللغة",
+  "fontSize": "حجم الخط",
+  "highContrast": "تباين عالي",
+  "screenReader": "قارئ الشاشة",
+  
+  "turkish": "التركية",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  
+  "small": "صغير",
+  "medium": "متوسط",
+  "large": "كبير",
+  "extraLarge": "كبير جداً",
+  
+  "premiumTitle": "العضوية المميزة",
+  "premiumDescription": "قضايا غير محدودة ومحلفون حصريون",
+  "monthlyPlan": "شهري",
+  "yearlyPlan": "سنوي",
+  "lifetimePlan": "مدى الحياة",
+  
+  "notificationSettings": "إعدادات الإشعارات",
+  "caseUpdates": "تحديثات القضايا",
+  "juryRecommendations": "توصيات المحلفين",
+  "weeklyDigest": "الملخص الأسبوعي",
+  "promotions": "العروض الترويجية",
+  "dailyReminder": "التذكير اليومي",
+  
+  "accessibility": "إمكانية الوصول",
+  "accessibilitySettings": "إعدادات إمكانية الوصول",
+  "voiceGuidance": "الإرشاد الصوتي",
+  "enableVoiceGuidance": "تفعيل الإرشاد الصوتي",
+  
+  "about": "حول",
+  "version": "الإصدار",
+  "rateApp": "تقييم التطبيق",
+  "shareApp": "مشاركة التطبيق",
+  "contactUs": "اتصل بنا",
+  
+  "error": "خطأ",
+  "success": "نجح",
+  "warning": "تحذير",
+  "info": "معلومات",
+  
+  "loading": "جاري التحميل...",
+  "retry": "إعادة المحاولة",
+  "noData": "لم يتم العثور على بيانات",
+  "noInternet": "لا يوجد اتصال بالإنترنت",
+  
+  "deleteConfirm": "هل أنت متأكد أنك تريد الحذف؟",
+  "deleteSuccess": "تم الحذف بنجاح",
+  "saveSuccess": "تم الحفظ بنجاح",
+  
+  "premiumRequired": "يتطلب بريميوم",
+  "premiumRequiredDescription": "هذه الميزة حصرية لأعضاء بريميوم",
+  "upgradeToPremium": "الترقية إلى بريميوم",
+  
+  "comparison": "المقارنة",
+  "compareJuries": "مقارنة المحلفين",
+  "voiceInput": "الإدخال الصوتي",
+  "useVoice": "استخدام التسجيل الصوتي",
+  
+  "cloudSync": "المزامنة السحابية",
+  "syncNow": "مزامنة الآن",
+  "lastSync": "آخر مزامنة",
+  "autoSync": "المزامنة التلقائية",
+  
+  "security": "الأمان",
+  "dataEncryption": "تشفير البيانات",
+  "biometricAuth": "المصادقة البيومترية",
+  
+  "offlineMode": "وضع عدم الاتصال",
+  "offlineModeDescription": "يعمل بدون إنترنت",
+  
+  "onboarding1Title": "مرحباً",
+  "onboarding1Description": "مرحباً بك في نظام المحكمة الافتراضية المدعوم بالذكاء الاصطناعي",
+  "onboarding2Title": "اختر محلفاً",
+  "onboarding2Description": "قيّم قضيتك من وجهات نظر مختلفة",
+  "onboarding3Title": "احصل على حكم",
+  "onboarding3Description": "تقييم موضوعي فوري وتوصيات",
+  "onboarding4Title": "احفظ وشارك",
+  "onboarding4Description": "احتفظ بأحكامك وشاركها",
+  "skip": "تخطي",
+  "next": "التالي",
+  "getStarted": "ابدأ"
+}

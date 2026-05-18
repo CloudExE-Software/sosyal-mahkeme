@@ -1,0 +1,118 @@
+{
+  "@@locale": "en",
+  "appTitle": "Virtual Court",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "homeTitle": "Who's Right?",
+  "homeSubtitle": "AI-powered virtual court system",
+  "startButton": "Start Case",
+  "continueButton": "Continue",
+  "cancelButton": "Cancel",
+  "saveButton": "Save",
+  "deleteButton": "Delete",
+  "okButton": "OK",
+  "yesButton": "Yes",
+  "noButton": "No",
+  
+  "selectJury": "Select Jury",
+  "selectJuryDescription": "Choose a jury to evaluate your case",
+  "enterCase": "Describe Your Case",
+  "enterCaseHint": "Write your case in detail...",
+  "analyzing": "Analyzing...",
+  "verdict": "Verdict",
+  "explanation": "Explanation",
+  
+  "history": "History",
+  "favorites": "Favorites",
+  "settings": "Settings",
+  "premium": "Premium",
+  "analytics": "Analytics",
+  "notifications": "Notifications",
+  
+  "darkMode": "Dark Mode",
+  "language": "Language",
+  "fontSize": "Font Size",
+  "highContrast": "High Contrast",
+  "screenReader": "Screen Reader",
+  
+  "turkish": "Turkish",
+  "english": "English",
+  "arabic": "Arabic",
+  
+  "small": "Small",
+  "medium": "Medium",
+  "large": "Large",
+  "extraLarge": "Extra Large",
+  
+  "premiumTitle": "Premium Membership",
+  "premiumDescription": "Unlimited cases and exclusive juries",
+  "monthlyPlan": "Monthly",
+  "yearlyPlan": "Yearly",
+  "lifetimePlan": "Lifetime",
+  
+  "notificationSettings": "Notification Settings",
+  "caseUpdates": "Case Updates",
+  "juryRecommendations": "Jury Recommendations",
+  "weeklyDigest": "Weekly Digest",
+  "promotions": "Promotions",
+  "dailyReminder": "Daily Reminder",
+  
+  "accessibility": "Accessibility",
+  "accessibilitySettings": "Accessibility Settings",
+  "voiceGuidance": "Voice Guidance",
+  "enableVoiceGuidance": "Enable voice guidance",
+  
+  "about": "About",
+  "version": "Version",
+  "rateApp": "Rate App",
+  "shareApp": "Share App",
+  "contactUs": "Contact Us",
+  
+  "error": "Error",
+  "success": "Success",
+  "warning": "Warning",
+  "info": "Info",
+  
+  "loading": "Loading...",
+  "retry": "Retry",
+  "noData": "No data found",
+  "noInternet": "No internet connection",
+  
+  "deleteConfirm": "Are you sure you want to delete?",
+  "deleteSuccess": "Successfully deleted",
+  "saveSuccess": "Successfully saved",
+  
+  "premiumRequired": "Premium Required",
+  "premiumRequiredDescription": "This feature is exclusive to premium members",
+  "upgradeToPremium": "Upgrade to Premium",
+  
+  "comparison": "Comparison",
+  "compareJuries": "Compare Juries",
+  "voiceInput": "Voice Input",
+  "useVoice": "Use Voice Recording",
+  
+  "cloudSync": "Cloud Sync",
+  "syncNow": "Sync Now",
+  "lastSync": "Last Sync",
+  "autoSync": "Auto Sync",
+  
+  "security": "Security",
+  "dataEncryption": "Data Encryption",
+  "biometricAuth": "Biometric Authentication",
+  
+  "offlineMode": "Offline Mode",
+  "offlineModeDescription": "Works without internet",
+  
+  "onboarding1Title": "Welcome",
+  "onboarding1Description": "Welcome to the AI-powered virtual court system",
+  "onboarding2Title": "Select a Jury",
+  "onboarding2Description": "Evaluate your case from different perspectives",
+  "onboarding3Title": "Get a Verdict",
+  "onboarding3Description": "Instant objective evaluation and recommendations",
+  "onboarding4Title": "Save and Share",
+  "onboarding4Description": "Keep and share your verdicts",
+  "skip": "Skip",
+  "next": "Next",
+  "getStarted": "Get Started"
+}
